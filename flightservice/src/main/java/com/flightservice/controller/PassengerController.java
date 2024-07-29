@@ -55,17 +55,27 @@ public class PassengerController {
     @PostMapping("/signup")
     public String SignUp(@RequestHeader("Authorization") String authorizationHeader,
                          @RequestBody Passenger passenger) {
-        log.info("Signing Up the User " + passenger);
+        log.info("Inside Signup");
         String idToken = authorizationHeader.replace("Bearer ", "");
+        log.info("Got id Token" + idToken);
         try {
             FirebaseToken decodedToken = firebaseService.verifyIdToken(idToken);
+            log.info("Decoded Token: " + decodedToken);
             String uid = decodedToken.getUid();
 
+            log.info("UID is : " + uid);
+
             Optional<Passenger> prevPassenger = passengerRepository.findById(uid);
+
+            log.info("Previous Passenger is : " + prevPassenger);
             if(prevPassenger.isPresent())
                 return "Already the User of Flights";
+
             passenger.setIsAdmin(false);
+
+            log.info("Passenger Set as admin");
             passengerRepository.save(passenger);
+            log.info("Passenger is saved");
             return String.format("User ID: %s, Username: %s, Name: %s, Email: %s",
                     uid, passenger.getId(), passenger.getName(), passenger.getEmail());
         } catch (FirebaseAuthException e) {

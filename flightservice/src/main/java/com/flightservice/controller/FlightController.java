@@ -6,6 +6,7 @@ import com.flightservice.model.Passenger;
 import com.flightservice.repository.FlightRepository;
 import com.flightservice.repository.PassengerRepository;
 import com.flightservice.service.FirebaseService;
+import com.flightservice.service.FlightUpdateProducer;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +36,9 @@ public class FlightController {
 
     @Autowired
     private FlightStatusHandler flightStatusHandler;
+
+    @Autowired
+    private FlightUpdateProducer flightUpdateProducer;
 
     private ResponseEntity<String> validateAdmin(String authorizationHeader) {
         String idToken = authorizationHeader.replace("Bearer ", "");
@@ -92,6 +96,9 @@ public class FlightController {
         if(!Objects.equals(existingFlightOpt.get(), updatedFlight)) {
             log.info("Broadcasting update for flight {}: {}", updatedFlight.getFlightNumber(), updatedFlight.getStatus());
             flightStatusHandler.broadcastFlightUpdate(updatedFlight);
+
+            log.info("Calling the Producer for Updated");
+            flightUpdateProducer.sendFlightUpdate(updatedFlight);
         }
 
         Flight existingFlight = getFlight(updatedFlight, existingFlightOpt);
