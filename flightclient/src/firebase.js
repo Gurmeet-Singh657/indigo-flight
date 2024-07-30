@@ -1,30 +1,25 @@
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
+// firebase.js
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getDatabase } from "firebase/database";
-const apiKey = process.env.REACT_APP_APIKEY;
-const authDomain = process.env.REACT_APP_AUTH_DOMAIN;
-const projectId = process.env.REACT_APP_PROJECT_ID;
-const storageBucket = process.env.REACT_APP_STORAGE_BUCKET;
-const messagingSenderId = process.env.REACT_APP_MESSAGING_SENDER_ID;
-const appId = process.env.REACT_APP_APP_ID;
-const measurementId = process.env.REACT_APP_MEASUREMENT_ID;
 
 const firebaseConfig = {
-    apiKey: apiKey,
-    authDomain: authDomain,
-    projectId: projectId,
-    storageBucket: storageBucket,
-    messagingSenderId: messagingSenderId,
-    appId: appId,
-    measurementId: measurementId,
+    apiKey: process.env.REACT_APP_APIKEY,
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_APP_ID,
+    measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
-const firebaseApp = firebase.initializeApp(firebaseConfig);
-export const database = getDatabase(firebaseApp);
-const auth = firebase.auth();
+const app = initializeApp(firebaseConfig);
 
-export const db = getFirestore(firebaseApp);
+// Initialize services
+const auth = getAuth(app);
+const db = getFirestore(app);
+const database = getDatabase(app);
 
-export { auth };
+export { auth, db, database };

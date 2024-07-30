@@ -53,7 +53,7 @@ const MyFlights = () => {
         const data = event.data.split(",");
         const flight = data[0].split(":")[1];
         const update = data[1].split(":")[1];
-        // Handle the received message (update flight status, etc.)
+        handleUpdateStatus(flight, update);
         console.log("Message Received");
       };
 
@@ -82,12 +82,16 @@ const MyFlights = () => {
   }, [token]);
 
   const handleUpdateStatus = (id, newStatus) => {
-    setFlights(
-      flights.map((flight) =>
-        flight.id === id ? { ...flight, status: newStatus } : flight
-      )
-    );
+    const updatedFlights = flights.map((flight) => {
+      if (flight.flightNumber === id) {
+        return { ...flight, status: newStatus };
+      }
+      return flight;
+    });
+    setFlights(updatedFlights);
   };
+
+  console.log(flights);
 
   return (
     <>
