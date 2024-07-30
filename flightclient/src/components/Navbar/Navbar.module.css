@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Mukta');
+
+
+.navbarContainer {
+  background-color: rgb(209, 227, 247);
+  padding: 0;
+}
+
+.navbarBrand {
+  color: #0066ff;
+  font-family: "Caveat", cursive;
+  font-weight: 1000;
+  font-size: 2.3rem;
+}
+
+.navbarToggler {
+  border: none;
+}
+
+.navbarTogglerIcon {
+  background-color: #fff;
+}
+
+.navbarCollapse {
+  background-color: rgb(209, 227, 247);
+}
+
+.navItem {
+  margin: 0 15px;
+}
+
+.navLink {
+  color: blue;
+  font-size: 1.1rem;
+  font-weight: bold;
+  font-family: "Mukta", sans-serif;
+  text-decoration: none;
+}
+
+.navLinkActive {
+  color: #0066ff;
+}
+
+.signInButton {
+  background-color: #0066ff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.signInButton:hover {
+  background-color: #0066ff;
+}
+
+.logOutButton {
+  background-color: rgb(51, 51, 237);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.logOutButton:hover {
+  background-color: rgb(51, 51, 237);
+}
+
+.icon {
+  margin-left: 8px;
+}

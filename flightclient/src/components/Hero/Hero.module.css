@@ -1,0 +1,31 @@
+.hero {
+    height: 100vh;
+    background-image: url('https://media.cntraveler.com/photos/63cac962a20dd5b7d9e22c46/16:9/w_2560%2Cc_limit/Airplane%2520night%2520sky%2520moon%2520_%2520marvin-van-beek-z3faD7yMRwg-unsplash.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #212121;
+    padding: 16px;
+  }
+  
+  .title {
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+    margin-top: 100px;
+    font-family: sans-serif;
+  }
+  
+  .subtitle {
+    margin-bottom: 32px;
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.6);
+  }
+  
+  .button {
+    background-color: #0066ff;
+    margin-top: 32px;
+  }
+  
